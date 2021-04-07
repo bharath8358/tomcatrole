@@ -1,0 +1,13 @@
+---
+- hosts: server2.sathya.com
+  become: yes
+  user: bharath
+  tasks:
+    - name: stop tomcat
+      command: nohup /usr/local/tomcat/apache-tomcat-8.5.64/bin/catalina.sh stop
+    - name: copy a war file
+      copy:
+        src: /opt/test/webproject.war
+        dest: /usr/local/apache-tomcat-8.5.64/webapps/
+    - name: start tomcat
+      command: nohup /usr/local/tomcat/apache-tomcat-8.5.64/bin/catalina.sh start
