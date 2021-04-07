@@ -19,3 +19,4 @@
       service:
         name: tomcat
         pattern: /usr/local/tomcat/apache-tomcat-8.5.64/bin/startup.sh
+        state: started
