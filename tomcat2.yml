@@ -1,0 +1,21 @@
+---
+- hosts: all
+  become: yes
+  user: bharath
+  tasks:
+    - name: create a directory
+      file:
+        path: /usr/local/tomcat
+        state: directory
+    - name: download tar file
+      get_url:
+        url: https://downloads.apache.org/tomcat/tomcat-8/v8.5.64/bin/apache-tomcat-8.5.64.tar.gz
+        path: /usr/local/tomcat/
+    - name: untar the zip file
+      unarchieve:
+        src: /usr/local/tomcat/apache-tomcat-8.5.64.tar.gz
+        dest: /usr/local/tomcat/
+    - name: start tomcat service
+      service:
+        name: tomcat
+        pattern: /usr/local/tomcat/apache-tomcat-8.5.64/bin/startup.sh
